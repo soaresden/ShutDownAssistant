@@ -37,17 +37,17 @@
     End Sub
 
     Private Sub HH_TextChanged(sender As Object, e As EventArgs) Handles HH.TextChanged
-        If Len(HH.Text) >= 2 Then HH.SelectAll()
+        If Len(HH.Text) >= 2 Then HH.Text = HH.Text.Substring(0, 2)
         calculatetime()
     End Sub
 
     Private Sub MM_TextChanged(sender As Object, e As EventArgs) Handles MM.TextChanged
-        If Len(MM.Text) >= 2 Then MM.SelectAll()
+        If Len(MM.Text) >= 2 Then MM.Text = MM.Text.Substring(0, 2)
         calculatetime()
     End Sub
 
     Private Sub SS_TextChanged(sender As Object, e As EventArgs) Handles SS.TextChanged
-        If Len(SS.Text) >= 2 Then SS.SelectAll()
+        If Len(SS.Text) >= 2 Then SS.Text = SS.Text.Substring(0, 2)
         calculatetime()
     End Sub
 
