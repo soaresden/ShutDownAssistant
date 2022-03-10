@@ -34,25 +34,21 @@
         Dim TimeMM = MM.Text * 60
         Dim TimeSS = SS.Text
         TimeToApply.Text = (TimeHH + TimeMM + TimeSS).ToString
-
-        If CmdToSend.Text = "" Then Exit Sub
-        CmdToSend.Text = Replace(CmdToSend.Text, CmdToSend.Text.Substring(15, 4), TimeToApply.Text)
-
     End Sub
 
     Private Sub HH_TextChanged(sender As Object, e As EventArgs) Handles HH.TextChanged
-        calculatetime()
         If Len(HH.Text) >= 2 Then HH.SelectAll()
+        calculatetime()
     End Sub
 
     Private Sub MM_TextChanged(sender As Object, e As EventArgs) Handles MM.TextChanged
-        calculatetime()
         If Len(MM.Text) >= 2 Then MM.SelectAll()
+        calculatetime()
     End Sub
 
     Private Sub SS_TextChanged(sender As Object, e As EventArgs) Handles SS.TextChanged
-        calculatetime()
         If Len(SS.Text) >= 2 Then SS.SelectAll()
+        calculatetime()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -79,5 +75,10 @@
         ShowInTaskbar = True
         Me.WindowState = FormWindowState.Normal
         TrayShutDownPlan.Visible = False
+    End Sub
+
+    Private Sub TimeToApply_TextChanged(sender As Object, e As EventArgs) Handles TimeToApply.TextChanged
+        If TimeToApply.Text = 0 Or CmdToSend.Text = "" Then Exit Sub
+        CmdToSend.Text = Replace(CmdToSend.Text, CmdToSend.Text.Substring(15, 4), TimeToApply.Text)
     End Sub
 End Class
