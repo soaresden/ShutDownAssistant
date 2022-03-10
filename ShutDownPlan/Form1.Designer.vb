@@ -165,6 +165,7 @@ Partial Class Form1
         'HH
         '
         Me.HH.Location = New System.Drawing.Point(119, 112)
+        Me.HH.MaxLength = 2
         Me.HH.Name = "HH"
         Me.HH.Size = New System.Drawing.Size(31, 27)
         Me.HH.TabIndex = 0
@@ -174,6 +175,7 @@ Partial Class Form1
         'MM
         '
         Me.MM.Location = New System.Drawing.Point(156, 112)
+        Me.MM.MaxLength = 2
         Me.MM.Name = "MM"
         Me.MM.Size = New System.Drawing.Size(35, 27)
         Me.MM.TabIndex = 1
@@ -183,6 +185,7 @@ Partial Class Form1
         'SS
         '
         Me.SS.Location = New System.Drawing.Point(197, 112)
+        Me.SS.MaxLength = 2
         Me.SS.Name = "SS"
         Me.SS.Size = New System.Drawing.Size(25, 27)
         Me.SS.TabIndex = 2

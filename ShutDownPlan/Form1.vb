@@ -26,28 +26,38 @@
 
     Sub calculatetime()
         'Check if ""
-        If HH.Text = "" Then HH.Text = "00"
-        If MM.Text = "" Then MM.Text = "00"
-        If SS.Text = "" Then SS.Text = "00"
+        If HH.Text = "" Then HH.Text = 0
+        If MM.Text = "" Then MM.Text = 0
+        If SS.Text = "" Then SS.Text = 0
 
         Dim TimeHH = HH.Text * 3600
         Dim TimeMM = MM.Text * 60
         Dim TimeSS = SS.Text
         TimeToApply.Text = (TimeHH + TimeMM + TimeSS).ToString
     End Sub
-
+    Private Sub TimeToApply_TextChanged(sender As Object, e As EventArgs) Handles TimeToApply.TextChanged
+        If TimeToApply.Text = 0 Or CmdToSend.Text = "" Then Exit Sub
+        CmdToSend.Text = Replace(CmdToSend.Text, CmdToSend.Text.Substring(15), TimeToApply.Text)
+    End Sub
     Private Sub HH_TextChanged(sender As Object, e As EventArgs) Handles HH.TextChanged
-        If Len(HH.Text) >= 2 Then HH.Text = HH.Text.Substring(0, 2)
+        If HH.Text = "" Then HH.Text = 0
+        If Len(HH.Text) >= 2 Then HH.SelectAll()
         calculatetime()
     End Sub
 
     Private Sub MM_TextChanged(sender As Object, e As EventArgs) Handles MM.TextChanged
-        If Len(MM.Text) >= 2 Then MM.Text = MM.Text.Substring(0, 2)
+        If CInt(MM.Text) >= 60 Or MM.Text = "" Then
+            MM.Text = 59
+        End If
+        If Len(MM.Text) >= 2 Then MM.SelectAll()
         calculatetime()
     End Sub
 
     Private Sub SS_TextChanged(sender As Object, e As EventArgs) Handles SS.TextChanged
-        If Len(SS.Text) >= 2 Then SS.Text = SS.Text.Substring(0, 2)
+        If CInt(SS.Text) >= 60 Or SS.Text = "" Then
+            SS.Text = 59
+        End If
+        If Len(SS.Text) >= 2 Then SS.SelectAll()
         calculatetime()
     End Sub
 
@@ -77,8 +87,4 @@
         TrayShutDownPlan.Visible = False
     End Sub
 
-    Private Sub TimeToApply_TextChanged(sender As Object, e As EventArgs) Handles TimeToApply.TextChanged
-        If TimeToApply.Text = 0 Or CmdToSend.Text = "" Then Exit Sub
-        CmdToSend.Text = Replace(CmdToSend.Text, CmdToSend.Text.Substring(15, 4), TimeToApply.Text)
-    End Sub
 End Class
